@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: enzo-tribelo/olly-football
+  repo: enzo-tribelo/cayden
   branch: main
   base_url: https://decap-oauth-proxy-eosin.vercel.app
   auth_endpoint: api/auth
