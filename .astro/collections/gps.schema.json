@@ -15,10 +15,31 @@
               "match": {
                 "type": "string"
               },
+              "our_team": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "result": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "score": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
               "session_id": {
                 "type": "string"
               },
               "ai_tagline": {
+                "type": "string"
+              },
+              "ai_performance_summary": {
                 "type": "string"
               },
               "duration_mins": {
