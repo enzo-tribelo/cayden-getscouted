@@ -9,10 +9,12 @@ interface Props {
   centerSlot?: string;
   /** Labels of nav links to hide (e.g. when section has no data) */
   hideSections?: string[];
+  /** Logo text — defaults to player name */
+  logoText?: string;
 }
 
 const BASE = import.meta.env.BASE_URL;
-const { current = 'home', backHref, backLabel, hideSections = [] } = Astro.props;
+const { current = 'home', backHref, backLabel, hideSections = [], logoText = 'Player' } = Astro.props;
 
 const allLinks = [
   { href: `${BASE}#stats`, label: 'Stats', page: 'home' },
@@ -28,7 +30,7 @@ const links = allLinks.filter(l => !hideSections.includes(l.label));
 <!-- Desktop nav -->
 <nav class="fixed top-0 left-0 right-0 z-50 bg-pitch/80 backdrop-blur-md border-b border-pitch-line/50 hidden md:block" aria-label="Site navigation">
   <div class="max-w-7xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between">
-    <a href={BASE} class="font-['Oswald'] text-sm uppercase tracking-[0.3em] text-gold hover:text-cream transition-colors">OR<span class="text-cream/40">9</span></a>
+    <a href={BASE} class="font-['Oswald'] text-sm uppercase tracking-[0.3em] text-gold hover:text-cream transition-colors">{logoText}</a>
     <div class="flex items-center gap-6">
       <slot name="center" />
       {links.map(link => (

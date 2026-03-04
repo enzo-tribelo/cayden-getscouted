@@ -27,7 +27,12 @@ export async function login(email, password) {
     redirect: 'manual',
   });
 
-  if (loginRes.status !== 302) throw new Error(`Login failed (HTTP ${loginRes.status})`);
+  if (loginRes.status !== 302) {
+    const body = await loginRes.text();
+    const errMatch = body.match(/alert[^>]*>(.*?)<\/div>/s) || body.match(/Invalid[^<"]+/);
+    const reason = errMatch ? errMatch[1]?.replace(/<[^>]+>/g, '').trim() || errMatch[0] : '(no error message found)';
+    throw new Error(`Login failed (HTTP ${loginRes.status}): ${reason}`);
+  }
   return loginRes.headers.getSetCookie().map(c => c.split(';')[0]).join('; ');
 }
 

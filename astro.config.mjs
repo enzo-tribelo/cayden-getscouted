@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://enzo-tribelo.github.io',
-  base: '/cayden',
+  base: '/cayden/',
   vite: {
     plugins: [tailwindcss()]
   }

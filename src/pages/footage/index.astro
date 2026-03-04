@@ -5,6 +5,8 @@ import Breadcrumb from '../../components/Breadcrumb.astro';
 import { getEntry } from 'astro:content';
 
 const BASE = import.meta.env.BASE_URL;
+const profile = await getEntry('profile', 'profile');
+const playerName = profile.data.name;
 
 const footageEntry = await getEntry('footage', 'footage');
 const videos = footageEntry.data;
@@ -18,7 +20,7 @@ const typeColors: Record<string, string> = {
 
 <Layout title="Footage — Olly Robinson | OR9" description="Match footage, highlights and goals for Olly Robinson — Attacking Forward. Bath City U18, Melksham Town.">
 
-  <Nav current="footage" />
+  <Nav current="footage" logoText={playerName} />
 
   <main id="main" class="min-h-screen pitch-pattern pt-20 pb-20">
     <Breadcrumb crumbs={[{ label: 'Profile', href: '/' }, { label: 'Footage' }]} />
