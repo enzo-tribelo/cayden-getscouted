@@ -12,6 +12,7 @@ const profileCollection = defineCollection({
     location: z.string(),
     nationality: z.string(),
     current_clubs: z.array(z.string()),
+    palette: z.string().optional(),
     socials: z.object({
       instagram: z.string(),
       x: z.string(),

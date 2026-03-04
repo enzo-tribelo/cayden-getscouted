@@ -25,6 +25,17 @@ collections:
           - { label: "Position", name: "position", widget: "string" }
           - { label: "Location", name: "location", widget: "string", hint: "e.g. Corsham, Wiltshire" }
           - { label: "Nationality", name: "nationality", widget: "string" }
+          - label: "Colour Palette"
+            name: "palette"
+            widget: "select"
+            default: "carbon-red"
+            options:
+              - { label: "1 · Pitch & Gold", value: "pitch-gold" }
+              - { label: "2 · Midnight Electric", value: "midnight-electric" }
+              - { label: "3 · Carbon Red", value: "carbon-red" }
+              - { label: "4 · Deep Purple & Cyan", value: "deep-purple-cyan" }
+              - { label: "5 · Pure Black & Gold", value: "pure-black-gold" }
+              - { label: "6 · Forest & Emerald", value: "forest-emerald" }
           - label: "Current Clubs"
             name: "current_clubs"
             widget: "list"
