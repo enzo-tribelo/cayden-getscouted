@@ -18,7 +18,7 @@ const typeColors: Record<string, string> = {
 };
 ---
 
-<Layout title="Footage — Olly Robinson | OR9" description="Match footage, highlights and goals for Olly Robinson — Attacking Forward. Bath City U18, Melksham Town.">
+<Layout title={`Footage — ${playerName}`} description={`Match footage, highlights and goals for ${playerName} — ${profile.data.position}.`} playerName={playerName} twitterHandle={profile.data.socials.x}>
 
   <Nav current="footage" logoText={playerName} />
 
