@@ -93,6 +93,7 @@ const gpsCollection = defineCollection({
         score: z.string().nullable().optional(),
         session_id: z.string(),
         ai_tagline: z.string().optional(),
+    ai_performance_summary: z.string().optional(),
         duration_mins: z.number(),
         has_data: z.boolean(),
         actual_mins: z.number().optional(),
