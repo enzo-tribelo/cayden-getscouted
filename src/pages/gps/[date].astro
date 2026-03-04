@@ -89,7 +89,7 @@ export async function getStaticPaths() {
     data-prev-url={prevDate ? `${BASE}gps/${prevDate}/` : ''}
     data-next-url={nextDate ? `${BASE}gps/${nextDate}/` : ''}>
     <Breadcrumb crumbs={[
-      { label: 'Profile', href: '/' },
+      { label: 'Profile', href: BASE },
       { label: 'GPS Performance', href: '/gps/' },
       { label: `${s.match} · ${new Date(s.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}` }
     ]} />
