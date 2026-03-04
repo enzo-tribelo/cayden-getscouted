@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { crumbs } = Astro.props;
-const SITE = Astro.site ? Astro.site.replace(/\/$/, '') : '';
+const SITE = Astro.site ? Astro.site.href.replace(/\/$/, '') : '';
 
 // Build JSON-LD BreadcrumbList
 const breadcrumbSchema = {

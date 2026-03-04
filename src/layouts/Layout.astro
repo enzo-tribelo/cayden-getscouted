@@ -11,10 +11,14 @@ const { title, description = "Player profile.", ogImage, playerName = '', twitte
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://enzo-tribelo.github.io');
 const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? 'https://enzo-tribelo.github.io').href : '';
 import '../styles/global.css';
+import { getPaletteCss } from '../lib/palettes';
+import { getEntry } from 'astro:content';
+const profileEntry = await getEntry('profile', 'profile');
+const paletteCss = getPaletteCss(profileEntry?.data?.palette ?? 'pitch-gold');
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" style={paletteCss}>
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
