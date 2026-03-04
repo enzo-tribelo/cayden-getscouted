@@ -8,13 +8,9 @@ import { existsSync } from 'fs';
 const BASE = import.meta.env.BASE_URL;
 const profileEntry = await getEntry('profile', 'profile');
 const playerName = profileEntry.data.name;
-const SITE = 'https://or9.uk';
+const SITE = Astro.site ? Astro.site.replace(/\/$/, '') : '';
 
-const clubLogos: Record<string, string> = {
-  'Bath City U18': `${BASE}clubs/bath-city.png`,
-  'Melksham Town U18': `${BASE}clubs/melksham-town.png`,
-  'Melksham Town Reserves': `${BASE}clubs/melksham-town.png`,
-};
+const clubLogos: Record<string, string> = {};
 
 const gpsEntry = await getEntry('gps', 'gps');
 const allSessions = gpsEntry.data.sessions;
@@ -48,8 +44,8 @@ const zones = [
 ];
 const maxZoneDist = Math.max(...zones.map(z => z.distance));
 
-const pageTitle = `${s.match} · ${dateStr} — GPS Performance | Olly Robinson`;
-const pageDesc = `GPS data for Olly Robinson: ${s.match} on ${dateStr}. Top speed ${s.max_speed_kph} km/h, ${(s.distance_m/1000).toFixed(1)}km covered, ${s.sprints} sprints.`;
+const pageTitle = `${s.match} · ${dateStr} — GPS Performance | ${playerName}`;
+const pageDesc = `GPS data for ${playerName}: ${s.match} on ${dateStr}. Top speed ${s.max_speed_kph} km/h, ${(s.distance_m/1000).toFixed(1)}km covered, ${s.sprints} sprints.`;
 
 // Prev/next session navigation
 const validDates = validSessions.map(x => x.date);
@@ -84,7 +80,7 @@ export async function getStaticPaths() {
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="article" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@ollyrobinson21" />
+
   </Fragment>
 
   <Nav current="gps" logoText={playerName} />

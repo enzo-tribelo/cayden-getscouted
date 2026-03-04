@@ -73,16 +73,7 @@ const hasAttributes = attributes.length > 0;
 const galleryPhotos: { src: string; alt: string; span: string }[] = [];
 
 // Club logo mapping
-const clubLogos: Record<string, string> = {
-  'Bath City U18': `${BASE}clubs/bath-city.png`,
-  'Melksham Town U18': `${BASE}clubs/melksham-town.png`,
-  'Melksham Town Reserves': `${BASE}clubs/melksham-town.png`,
-  'Calne Town Youth U16': `${BASE}clubs/calne-town.png`,
-  'AFC Corsham U15': `${BASE}clubs/afc-corsham.png`,
-  'FC Wilts JPL U15': `${BASE}clubs/fc-wilts.png`,
-  'FC Wilts JPL U16': `${BASE}clubs/fc-wilts.png`,
-  'Wiltshire FA U16': `${BASE}clubs/wiltshire-fa.png`,
-};
+const clubLogos: Record<string, string> = {};
 
 // Add computed G/90 and A/90 to each club
 const seasonsWithXG = seasons.map(season => ({
@@ -95,14 +86,14 @@ const seasonsWithXG = seasons.map(season => ({
 }));
 ---
 
-<Layout title={`${profileData.name} — Player Profile`} description={`${profileData.name} — ${profileData.position}. ${profileData.nationality} footballer. Age ${age}. ${profileData.current_clubs[0]}.`}>
+<Layout title={`${profileData.name} — Player Profile`} playerName={profileData.name} twitterHandle={profileData.socials.x} description={`${profileData.name} — ${profileData.position}. ${profileData.nationality} footballer. Age ${age}. ${profileData.current_clubs[0]}.`}>
 
   <!-- JSON-LD Person -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Person",
     "name": profileData.name,
-    "url": "https://or9.uk",
+    "url": `${Astro.site ?? ""}`,
     "jobTitle": `Footballer — ${profileData.position}`,
     "birthDate": profileData.dob,
     "nationality": [{ "@type": "Country", "name": "United Kingdom" }, { "@type": "Country", "name": "Italy" }],
@@ -258,7 +249,7 @@ const seasonsWithXG = seasons.map(season => ({
         <h2 class="font-['Oswald'] text-3xl sm:text-4xl font-bold uppercase tracking-wide">GPS Performance</h2>
         <div class="flex-1 h-px bg-pitch-line"></div>
       </div>
-      <p class="text-xs text-cream-muted mb-10">Tracked via PlayerData GPS · {gpsStats.matches} matches · Bath City U18 2025-26</p>
+      <p class="text-xs text-cream-muted mb-10">Tracked via PlayerData GPS · {gpsStats?.matches} matches</p>
 
       <!-- Summary stats -->
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -524,7 +515,7 @@ const seasonsWithXG = seasons.map(season => ({
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
         <div>
           <span class="font-['Oswald'] text-2xl font-bold uppercase tracking-wide">{profileData.name}</span>
-          <span class="text-cream-muted text-sm ml-3">⚽ Striker · Age {age} · Wiltshire</span>
+          <span class="text-cream-muted text-sm ml-3">⚽ {profileData.position} · Age {age} · {profileData.location}</span>
         </div>
         <div class="flex items-center gap-6 text-sm text-cream-muted">
           <a href={`${BASE}footage/`} class="hover:text-gold transition-colors">📹 Footage</a>

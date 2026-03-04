@@ -8,11 +8,7 @@ const BASE = import.meta.env.BASE_URL;
 const profile = await getEntry('profile', 'profile');
 const playerName = profile.data.name;
 
-const clubLogos: Record<string, string> = {
-  'Bath City U18': `${BASE}clubs/bath-city.png`,
-  'Melksham Town U18': `${BASE}clubs/melksham-town.png`,
-  'Melksham Town Reserves': `${BASE}clubs/melksham-town.png`,
-};
+const clubLogos: Record<string, string> = {};
 
 const gpsEntry = await getEntry('gps', 'gps');
 const allSessions = gpsEntry.data.sessions;
@@ -53,15 +49,15 @@ const stats = {
 };
 ---
 
-<Layout title="GPS Performance — Olly Robinson | OR9" description="GPS tracking data for Olly Robinson — distance, top speed, sprints and high-intensity performance tracked via PlayerData. Bath City U18, 2025-26 season.">
+<Layout title={`GPS Performance — ${playerName}`} description={`GPS tracking data for ${playerName} — distance, top speed, sprints and high-intensity runs tracked via PlayerData.`} playerName={playerName} twitterHandle={profile.data.socials.x}>
   <Fragment slot="head">
-    <link rel="canonical" href="https://or9.uk/gps/" />
-    <meta property="og:title" content="GPS Performance — Olly Robinson" />
-    <meta property="og:description" content="GPS tracking data for Olly Robinson — distance, top speed, sprints and high-intensity performance. Bath City U18, 2025-26." />
-    <meta property="og:url" content="https://or9.uk/gps/" />
+    <link rel="canonical" href={`${Astro.site ?? ""}gps/`} />
+    <meta property="og:title" content={`GPS Performance — ${playerName}`} />
+    <meta property="og:description" content={`GPS tracking data for ${playerName} — distance, top speed, sprints and high-intensity performance.`} />
+    <meta property="og:url" content={`${Astro.site ?? ""}gps/`} />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@ollyrobinson21" />
+
   </Fragment>
 
   <Nav current="gps" logoText={playerName} />
@@ -80,7 +76,7 @@ const stats = {
           <span class="text-cream">GPS</span> <span class="text-gold">Data</span>
         </h1>
         <p class="text-cream-muted text-sm max-w-lg">
-          Physical performance data tracked via PlayerData GPS vests during Bath City U18 matches · 2025-26 season · {stats.tracked} sessions tracked, {stats.withData} with data.
+          Physical performance data tracked via PlayerData GPS vests · {stats.tracked} sessions tracked, {stats.withData} with data.
         </p>
       </div>
 
